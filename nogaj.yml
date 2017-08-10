@@ -1,0 +1,150 @@
+name: "Nogaj"
+age: 323
+race: Dwarf
+height: 130
+prefered_hand: Right
+xps: 4590
+spent_xps: 4170
+hit_points: 20
+fatigue: 3
+force_points: 4
+base_movement: 5
+wealth:
+  bank:
+    platinum: 180
+  carried:
+    platinum: 32
+    gold: 35
+    silver: 5
+formations:
+  - name: Guns
+    description: Increase base shooting skill with guns
+    modifier: 10
+  - name: Riffles
+    description: Increase base shooting skill with riffles
+    modifier: 10
+  - name: Drunk Man Technique
+    description: Close combat style
+talents:
+  - name: Evangelism
+    description: Give some skills because of faith.
+  - name: Sniper
+    description: Remove some penalties for long-distance shooting
+  - name: Ammo Crafting
+    description: Allows to craft ammunitions
+  - name: Decadence
+    description: Improved alcohol resistance
+  - name: Heal
+    description: Jagon heals you or someone else
+main_stats:
+  - name: Strength
+    base: 36
+    rank: C
+  - name: Agility
+    base: 54
+    rank: A
+    modifier: 10
+  - name: Stamina
+    base: 30
+    rank: B
+  - name: Intelligence
+    base: 32
+    rank: C
+  - name: Perception
+    base: 41
+    rank: A
+    modifier: 20
+  - name: Sociability
+    base: 66
+    rank: B
+  - name: Willpower
+    base: 31
+    rank: B
+extra_stats:
+  - name: Baratin
+    modifier: 5
+  - name: Charisme
+  - name: Discretion
+  - name: Enquête
+    modifier: 5
+  - name: Evasion
+    modifier: 5
+  - name: Fouille
+    modifier: 5
+  - name: Intimidation
+  - name: Observation
+    modifier: 5
+  - name: Sang-froid
+  - name: Prosélitisme
+    modifier: 2
+  - name: Connaissances (Cultures anciennes)
+  - name: Démolition
+  - name: Subterfuge
+equipment:
+  weapons:
+    - name: Épée +2
+      type: Sword
+      damage:
+        throws: 4
+        type: 6
+    - name: Krain & Nogaj
+      type: Hammers
+      damage:
+        throws: 10
+        type: 10
+  ranged_weapons:
+    - name: Lamagun
+      type: Gun
+      scope: 10
+      damage:
+        throws: 2
+        type: 10
+    - name: Dagues de jet
+      type: Daggers
+      damage:
+        throws: 2
+        type: 4
+  jacket:
+    - name: Cuir
+      description: Simple veste en cuir solide
+inventory:
+  - name: Rations
+    quantity: 10
+    description: Permet de se sustenter
+  - name: Lampe
+    quantity: 1
+    description: Lampe à huile
+  - name: huile
+    quantity: 50
+    unit: cl
+    description: Huile inflammable
+  - name: Bandages
+    quantity: 10
+    unit: m
+    description: Bandages pour soigner les blessures
+  - name: Onguent
+    quantity: 1
+    unit: l
+    description: Onguent pour soigner les blessures
+  - name: Sac de couchage
+    quantity: 1
+  - name: Kit d'escalade
+    quantity: 1
+  - name: Briquet
+    quantity: 1
+    description: Briquet à amadou
+  - name: Acid Flask
+    quantity: 8
+    description: Flasque remplie d'acide
+  - name: Livre d'histoire naine
+    quantity: 2
+    description: Livre trouvé dans les mines
+  - name: Livres anciens
+    quantity: 2
+    description: Livres trouvés je sais plus où
+  - name: Dard d'abeille géante
+    quantity: 1
+    description: Un dard géant
+
+
+
