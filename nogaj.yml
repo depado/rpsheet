@@ -88,7 +88,7 @@ equipment:
         throws: 4
         type: 6
     - name: Krain & Nogaj
-      type: Hammers
+      type: Hammer
       damage:
         throws: 10
         type: 10

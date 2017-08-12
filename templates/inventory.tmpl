@@ -6,12 +6,12 @@
     <div class="mdl-card__supporting-text">
         <ul class="mdl-list">
             {{ range .Inventory }}
-            <li class="mdl-list__item mdl-list__item--two-line" style="height: 60px;">
+            <li class="mdl-list__item mdl-list__item--three-line">
                 <span class="mdl-list__item-primary-content">
-                    <img class="mdl-list__item-icon" src="/assets/img/black-bag.svg" height="20px">
+                    <img class="mdl-list__item-avatar" src="/assets/img/black-bag.svg" style="background-color:#fff; margin-bottom: 20px;">
                     <span>{{ .Name }}</span>
                     {{ if .Description }}
-                    <span class="mdl-list__item-sub-title">{{ .Description }}</span>
+                    <span class="mdl-list__item-text-body">{{ .Description }}</span>
                     {{ end }}
                 </span>
                 {{ if .Unit }}

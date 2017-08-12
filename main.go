@@ -29,7 +29,7 @@ func main() {
 	r.LoadHTMLGlob("templates/*")
 	r.Static("/assets", "./assets")
 	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", nogaj)
+		c.HTML(http.StatusOK, "index.tmpl", nogaj)
 	})
 	r.Run(":8080")
 }
