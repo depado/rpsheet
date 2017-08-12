@@ -1,5 +1,10 @@
 package models
 
+import (
+	"fmt"
+	"strings"
+)
+
 // Character represents a single player character
 type Character struct {
 	Name         string  `yaml:"name"`
@@ -29,6 +34,17 @@ type Character struct {
 	Inventory []QuantifiedItem `yaml:"inventory"`
 }
 
+// Enrich will execute many operations to try and enrich the character will
+// computable data
+func (c *Character) Enrich() {
+	for i := range c.MainStats {
+		c.MainStats[i].MatchIcon()
+	}
+	for i := range c.ExtraStats {
+		c.ExtraStats[i].MatchIcon()
+	}
+}
+
 // DiceThrow defines the way dice throws are represented
 // For exemple 10D10 → Throws: 10, Type: 10
 type DiceThrow struct {
@@ -43,6 +59,14 @@ type Stat struct {
 	Base     int    `yaml:"base"`
 	Rank     string `yaml:"rank"`
 	Modifier int    `yaml:"modifier"`
+	Icon     string `yaml:"icon"`
+}
+
+// MatchIcon will assign a default icon if none is given
+func (s *Stat) MatchIcon() {
+	if s.Icon == "" {
+		s.Icon = fmt.Sprintf("%s.svg", strings.ToLower(s.Name))
+	}
 }
 
 // Formation represent a single formation (and what it does)

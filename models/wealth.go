@@ -8,8 +8,8 @@ type Wealth struct {
 
 // WealthStorage is a single place where wealth can be stored
 type WealthStorage struct {
-	Platinium int `yaml:"platinum"`
-	Gold      int `yaml:"gold"`
-	Silver    int `yaml:"silver"`
-	Bronze    int `yaml:"bronze"`
+	Platinum int `yaml:"platinum"`
+	Gold     int `yaml:"gold"`
+	Silver   int `yaml:"silver"`
+	Bronze   int `yaml:"bronze"`
 }

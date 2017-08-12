@@ -8,56 +8,32 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <style>
+        body {
+            background-image: url("/assets/img/body_bg.png");
+            background-repeat: repeat;
+        }
         .demo-card > .mdl-card__title {
             color: #fff;
-            background:
-                url('https://s-media-cache-ak0.pinimg.com/originals/79/27/71/792771f5b6a114a4ddeef9d8f3cce533.jpg') bottom right 15% no-repeat #46B6AC;
-            }
+            max-height: 250px;
+            background: url('https://s-media-cache-ak0.pinimg.com/736x/76/97/25/7697250a7d657f4ed1c723c4e5da7035--character-ideas-character-art.jpg') ;
+            background-position: center;
+        }
     </style>
   </head>
   <body>
     <div class="mdl-layout mdl-js-layout">
         <main class="mdl-layout__content">
             <div class="mdl-grid">
-                <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--4-col">
-                    <div class="mdl-card__supporting-text">
-                        <ul class="mdl-list">
-                            {{ range .Inventory }}
-                            <li class="mdl-list__item mdl-list__item--three-line" style="height: 60px;">
-                                <span class="mdl-list__item-primary-content">
-                                <span>{{ .Quantity }}{{ if .Unit }}{{ .Unit }}{{ end }} {{ .Name }}</span>
-                                <span class="mdl-list__item-text-body">
-                                    {{ .Description }}
-                                </span>
-                                </span>
-                            </li>
-                            {{ end }}
-                        </ul>
-                    </div>
+                {{ template "inventory_card" . }}
+                {{ template "main_stats_card" . }}
+                <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+                    {{ template "infos_card" . }}
+                    <div class="demo-separator mdl-cell--1-col"></div>
+                    {{ template "cash_card" . }}
                 </div>
-                <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--4-col">
-                    <div class="mdl-card__supporting-text mdl-grid">
-                        {{ range .MainStats }}
-                        <div class="mdl-cell mdl-cell--6-col"><h4><span class="mdl-badge mdl-badge--no-background" data-badge="{{ .Rank }}">{{ .Name }}</span></h4></div>
-                        <div class="mdl-cell mdl-cell--6-col"><h4>
-                            {{ if .Modifier }}
-                            <span class="mdl-badge mdl-badge--no-background" data-badge="+{{ .Modifier }}">{{ .Base }}</span>
-                            {{ else }}
-                            {{ .Base }}
-                            {{ end }}
-                        </h4></div>
-                        {{ end }}
-                    </div>
-                </div>
-                <div class="demo-card mdl-card mdl-shadow--4dp mdl-cell mdl-cell--4-col">
-                    <div class="mdl-card__title mdl-card--expand">
-                        <h2 class="mdl-card__title-text">{{ .Name }}</h2>
-                    </div>
-                    <div class="mdl-card__supporting-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Mauris sagittis pellentesque lacus eleifend lacinia...
-                    </div>
-                </div>
+            </div>
+            <div class="mdl-grid">
+                {{ template "weapons_card" . }}
             </div>
         </main>
     </div>

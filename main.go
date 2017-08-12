@@ -23,9 +23,11 @@ func main() {
 	if err = yaml.Unmarshal(c, &nogaj); err != nil {
 		logrus.WithError(err).Fatal("Couldn't unmarshal")
 	}
+	nogaj.Enrich()
 
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*")
+	r.Static("/assets", "./assets")
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", nogaj)
 	})

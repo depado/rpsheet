@@ -1,0 +1,40 @@
+{{ define "cash_card" }}
+<div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+    <div class="mdl-card__title mdl-color--light-blue-400 mdl-color-text--grey-100">
+        <h2 class="mdl-card__title-text"><img src="/assets/img/cash.svg" height="30px">&nbsp;&nbsp; Wealth</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        <table class="mdl-data-table mdl-js-data-table" style="border:none; font-size: 1.5em;">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Storage</th>
+                    <th>Platinum</th>
+                    <th>Gold</th>
+                    <th>Silver</th>
+                    <th>Bronze</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{ with .Wealth.Carried }}
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Carried</td>
+                    <td>{{ .Platinum }}</td>
+                    <td>{{ .Gold }}</td>
+                    <td>{{ .Silver }}</td>
+                    <td>{{ .Bronze }}</td>
+                </tr>
+            {{ end }}
+            {{ with .Wealth.Bank }}
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">Bank</td>
+                <td>{{ .Platinum }}</td>
+                <td>{{ .Gold }}</td>
+                <td>{{ .Silver }}</td>
+                <td>{{ .Bronze }}</td>
+            </tr>
+            {{ end }}
+            </tbody>
+        </table>
+    </div>
+</div>
+{{ end }}

@@ -114,7 +114,7 @@ inventory:
   - name: Lampe
     quantity: 1
     description: Lampe à huile
-  - name: huile
+  - name: Huile
     quantity: 50
     unit: cl
     description: Huile inflammable
@@ -124,11 +124,13 @@ inventory:
     description: Bandages pour soigner les blessures
   - name: Onguent
     quantity: 1
-    unit: l
+    unit: L
     description: Onguent pour soigner les blessures
   - name: Sac de couchage
     quantity: 1
+    description: Permet de dormir correctement à même le sol
   - name: Kit d'escalade
+    description: Contient des crochets d'escalade ainsi qu'un grapin
     quantity: 1
   - name: Briquet
     quantity: 1
