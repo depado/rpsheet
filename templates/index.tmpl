@@ -13,10 +13,15 @@
             background-repeat: repeat;
         }
         .demo-card > .mdl-card__title {
-            color: #fff;
+            color: black;
             max-height: 250px;
-            background: url('https://s-media-cache-ak0.pinimg.com/736x/76/97/25/7697250a7d657f4ed1c723c4e5da7035--character-ideas-character-art.jpg') ;
-            background-position: center;
+            background-position-y: 5%;
+            background-image: url('{{ .PortraitURL }}');
+            text-shadow: 0px 0px 4px rgba(255, 255, 255, 1);
+            /* background-position: center; */
+        }
+        .mdl-list__item-avatar {
+            border-radius: 0%;
         }
     </style>
   </head>
@@ -24,16 +29,17 @@
     <div class="mdl-layout mdl-js-layout">
         <main class="mdl-layout__content">
             <div class="mdl-grid">
-                {{ template "inventory_card" . }}
-                {{ template "main_stats_card" . }}
                 <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
                     {{ template "infos_card" . }}
                     <div class="demo-separator mdl-cell--1-col"></div>
                     {{ template "cash_card" . }}
                 </div>
+                {{ template "stats_card" . }}
+                {{ template "inventory_card" . }}
             </div>
             <div class="mdl-grid">
                 {{ template "weapons_card" . }}
+                {{ template "skills_card" . }}
             </div>
         </main>
     </div>

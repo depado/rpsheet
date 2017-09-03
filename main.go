@@ -1,35 +1,45 @@
 package main
 
 import (
-	"io/ioutil"
+	"fmt"
 	"net/http"
 
+	"github.com/Sirupsen/logrus"
 	"github.com/gin-gonic/gin"
 
-	"github.com/Sirupsen/logrus"
-	yaml "gopkg.in/yaml.v2"
-
+	"github.com/Depado/rpsheet/conf"
 	"github.com/Depado/rpsheet/models"
 )
 
 func main() {
 	var err error
-	var c []byte
 	var nogaj models.Character
 
-	if c, err = ioutil.ReadFile("nogaj.yml"); err != nil {
-		logrus.WithError(err).Fatal("Couldn't load file")
+	// Loading character
+	if err = nogaj.Load("nogaj.yml"); err != nil {
+		logrus.WithError(err).WithField("file", "nogaj.yml").Fatal("Couldn't load char")
 	}
-	if err = yaml.Unmarshal(c, &nogaj); err != nil {
-		logrus.WithError(err).Fatal("Couldn't unmarshal")
-	}
-	nogaj.Enrich()
 
+	// Loading configuration
+	if err = conf.Load("conf.yml"); err != nil {
+		logrus.WithError(err).WithField("file", "conf.yml").Fatal("Couldn't load configuration file")
+	}
+
+	// Set gin mode
+	if !conf.C.Debug {
+		gin.SetMode(gin.ReleaseMode)
+	}
+
+	// Router setup
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*")
 	r.Static("/assets", "./assets")
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.tmpl", nogaj)
 	})
-	r.Run(":8080")
+
+	// Running server
+	if err = r.Run(fmt.Sprintf("%s:%d", conf.C.Host, conf.C.Port)); err != nil {
+		logrus.WithError(err).Fatal("Couldn't start listening")
+	}
 }

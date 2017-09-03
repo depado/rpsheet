@@ -1,5 +1,10 @@
 package models
 
+import (
+	"fmt"
+	"strings"
+)
+
 // Equipment groups all the stuff the player has equipped or can equip
 type Equipment struct {
 	// Weapons
@@ -17,23 +22,29 @@ type Equipment struct {
 	Other         []Armor `yaml:"other"`
 }
 
-// Armor is a simple armor
-type Armor struct {
-	Name        string `yaml:"name"`
-	Description string `yaml:"description"`
+// Weapon describes a weapon (not ranged)
+type Weapon struct {
+	Type   string    `yaml:"type"`
+	Icon   string    `yaml:"icon"`
+	Name   string    `yaml:"name"`
+	Damage DiceThrow `yaml:"damage"`
+}
+
+// MatchIcon will assign a default icon if none is set
+func (w *Weapon) MatchIcon() {
+	if w.Icon == "" {
+		w.Icon = fmt.Sprintf("%s.svg", strings.ToLower(w.Type))
+	}
 }
 
 // RangedWeapon describes a ranged weapon
 type RangedWeapon struct {
-	Type   string    `yaml:"type"`
-	Scope  int       `yaml:"scope"` // In meters
-	Name   string    `yaml:"name"`
-	Damage DiceThrow `yaml:"damage"`
+	Weapon `yaml:",inline"`
+	Scope  int `yaml:"scope"` // In meters
 }
 
-// Weapon describes a weapon (not ranged)
-type Weapon struct {
-	Type   string    `yaml:"type"`
-	Name   string    `yaml:"name"`
-	Damage DiceThrow `yaml:"damage"`
+// Armor is a simple armor
+type Armor struct {
+	Name        string `yaml:"name"`
+	Description string `yaml:"description"`
 }

@@ -1,4 +1,5 @@
 name: "Nogaj"
+portrait_url: https://countzero.info/nogaj.jpg
 age: 323
 race: Dwarf
 height: 130
@@ -36,7 +37,15 @@ talents:
     description: Improved alcohol resistance
   - name: Heal
     description: Jagon heals you or someone else
-main_stats:
+    effect: Willpower test, 1D10 per rank if succeeded
+stats:
+  - name: CC
+    base: 26
+    rank: C
+  - name: CT
+    base: 49
+    modifier: 5
+    rank: A
   - name: Strength
     base: 36
     rank: C
@@ -60,7 +69,7 @@ main_stats:
   - name: Willpower
     base: 31
     rank: B
-extra_stats:
+skills:
   - name: Baratin
     modifier: 5
   - name: Charisme

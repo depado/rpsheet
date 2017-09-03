@@ -2,11 +2,15 @@ package models
 
 import (
 	"fmt"
+	"io/ioutil"
 	"strings"
+
+	yaml "gopkg.in/yaml.v2"
 )
 
 // Character represents a single player character
 type Character struct {
+	PortraitURL  string  `yaml:"portrait_url"`
 	Name         string  `yaml:"name"`
 	Age          int     `yaml:"age"`
 	FakeID       string  `yaml:"fake_id"`
@@ -27,29 +31,51 @@ type Character struct {
 
 	Formations []Formation `yaml:"formations"`
 	Talents    []Talent    `yaml:"talents"`
-	MainStats  []Stat      `yaml:"main_stats"`
-	ExtraStats []Stat      `yaml:"extra_stats"`
+	Stats      []Stat      `yaml:"stats"`
+	Skills     []Stat      `yaml:"skills"`
 
 	Equipment Equipment        `yaml:"equipment"`
 	Inventory []QuantifiedItem `yaml:"inventory"`
 }
 
+// Load loads a character with the given yaml file
+func (c *Character) Load(fp string) error {
+	var err error
+	var cr []byte
+
+	if cr, err = ioutil.ReadFile(fp); err != nil {
+		return err
+	}
+	if err = yaml.Unmarshal(cr, c); err != nil {
+		return err
+	}
+	c.Enrich()
+	return nil
+}
+
 // Enrich will execute many operations to try and enrich the character will
 // computable data
 func (c *Character) Enrich() {
-	for i := range c.MainStats {
-		c.MainStats[i].MatchIcon()
+	for i := range c.Stats {
+		c.Stats[i].MatchIcon()
 	}
-	for i := range c.ExtraStats {
-		c.ExtraStats[i].MatchIcon()
+	for i := range c.Skills {
+		c.Skills[i].MatchIcon()
+	}
+	for i := range c.Equipment.Weapons {
+		c.Equipment.Weapons[i].MatchIcon()
+	}
+	for i := range c.Equipment.RangedWeapons {
+		c.Equipment.RangedWeapons[i].MatchIcon()
 	}
 }
 
 // DiceThrow defines the way dice throws are represented
 // For exemple 10D10 → Throws: 10, Type: 10
 type DiceThrow struct {
-	Throws int `yaml:"throws"`
-	Type   int `yaml:"type"`
+	Throws  int `yaml:"throws"`
+	Type    int `yaml:"type"`
+	PerRank int `yaml:"per_rank"`
 }
 
 // Stat can be a main stat or an extra stat (in which case, rank and base
@@ -67,17 +93,4 @@ func (s *Stat) MatchIcon() {
 	if s.Icon == "" {
 		s.Icon = fmt.Sprintf("%s.svg", strings.ToLower(s.Name))
 	}
-}
-
-// Formation represent a single formation (and what it does)
-type Formation struct {
-	Name        string `yaml:"name"`
-	Description string `yaml:"description"`
-	Modifier    int    `yaml:"modifier"`
-}
-
-// Talent represent a single talent and what it does
-type Talent struct {
-	Name        string `yaml:"name"`
-	Description string `yaml:"description"`
 }
