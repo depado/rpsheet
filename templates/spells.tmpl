@@ -1,0 +1,32 @@
+{{ define "spells_card" }}
+<div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--6-col">
+    <div class="mdl-card__title mdl-color--light-blue-400 mdl-color-text--grey-100">
+        <h2 class="mdl-card__title-text"><img src="/assets/img/spellbook.svg" height="30px">&nbsp;&nbsp; Spells</h2>
+    </div>
+    <div class="mdl-card__supporting-text mdl-grid">
+        {{ range .Spells }}
+        <div class="mdl-cell mdl-cell--12-col">
+            <h5>{{ .Name }}</h4>
+            <hr>
+            <p>
+                <img src="/assets/img/dice.svg" height="25px"> {{ .Score.Throws }}D{{ .Score.Type }}{{ if .Score.PerRank }} per rank{{ end }}{{ if .FmtModifier}} {{ .FmtModifier }}{{ end }}
+            </p>
+            {{ if .Test }}
+            <p>
+                <img src="/assets/img/test.svg" height="25px"> {{ .Test }}
+            </p>
+            {{ end }}
+            <p>
+                <img src="/assets/img/crosshair.svg" height="25px"> {{ if .Scope }}{{ .Scope }}m{{ else }}Physical{{ end }}
+            </p>
+            {{ if .Description }}
+            <p>
+                <img src="/assets/img/book.svg" height="25px"> {{ .Description }}
+            </p>
+            {{ end }}
+            <hr />
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

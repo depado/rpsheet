@@ -4,38 +4,59 @@
         <h2 class="mdl-card__title-text"><img src="/assets/img/weapons.svg" height="30px">&nbsp;&nbsp; Weapons</h2>
     </div>
     <div class="mdl-card__supporting-text mdl-grid">
-        <div class="mdl-cell mdl-cell--6-col">
-        <h4 style="text-align: center;">Physical</h4>
-        <ul class="mdl-list">
+        <div class="mdl-cell mdl-cell--6-col mdl-grid">
             {{ range .Equipment.Weapons }}
-            <li class="mdl-list__item mdl-list__item--three-line">
-                <span class="mdl-list__item-primary-content">
-                    <img class="mdl-list__item-avatar" src="/assets/items/{{ .Icon }}" style="background-color:#fff; margin-bottom: 20px;">
-                    <span>{{ .Name }}</span>
-                    <span class="mdl-list__item-text-body">
-                    {{ .Damage.Throws }}D{{ .Damage.Type }}
-                    </span>
-                </span>
-            </li>
+            <div class="mdl-cell mdl-cell--12-col">
+                <h5><img src="/assets/items/{{ .Icon }}" style="height: 30px;"> {{ .Name }}</h5>
+                <hr />
+                <p>
+                    <span><img src="/assets/img/dice.svg" height="25px"> {{ .Damage.Throws }}D{{ .Damage.Type }}</span>
+                </p>
+                {{ range .Notes }}
+                <p>
+                    <img src="/assets/img/book.svg" height="25px"> {{ . }}
+                </p>
+                {{ end }}
+                {{ range .Modifiers }}
+                <p>
+                    <img src="/assets/img/main_stats_dark.svg" height="25px"> {{ . }}
+                </p>
+                {{ end }}
+                {{ if .Description }}
+                    <p style="text-align: justify;"><i>{{ .Description }}</i></p>
+                {{ end }}
+                <hr />
+            </div>
             {{ end }}
-        </ul>
-    </div>
-    <div class="mdl-cell mdl-cell--6-col">
-        <h4 style="text-align: center;">Ranged</h4>
-        <ul class="mdl-list">
+        </div>
+        <div class="mdl-cell mdl-cell--6-col mdl-grid">
             {{ range .Equipment.RangedWeapons }}
-            <li class="mdl-list__item mdl-list__item--three-line">
-                <span class="mdl-list__item-primary-content">
-                    <img class="mdl-list__item-avatar" src="/assets/items/{{ .Icon }}" style="background-color:#fff; margin-bottom: 20px;">
-                    <span>{{ .Name }}</span>
-                    <span class="mdl-list__item-text-body">
-                    {{ .Damage.Throws }}D{{ .Damage.Type }}{{ if .Scope }} - {{ .Scope }}m{{ end }}
-                    </span>
-                </span>
-            </li>
+            <div class="mdl-cell mdl-cell--12-col">
+                <h5><img src="/assets/items/{{ .Icon }}" style="height: 30px;"> {{ .Name }}</h5>
+                <hr />
+                <p>
+                    <span><img src="/assets/img/dice.svg" height="25px"> {{ .Damage.Throws }}D{{ .Damage.Type }}</span>
+                    {{ if .Scope }}
+                    <span style="float: right;"><img src="/assets/img/crosshair.svg" height="25px"> {{ .Scope }}m</span>
+                    {{ end }} 
+                </p>
+                {{ range .Notes }}
+                <p>
+                    <img src="/assets/img/book.svg" height="25px"> {{ . }}
+                </p>
+                {{ end }}
+                {{ range .Modifiers }}
+                <p>
+                    <img src="/assets/img/main_stats_dark.svg" height="25px"> {{ . }}
+                </p>
+                {{ end }}
+                {{ if .Description }}
+                    <p style="text-align: justify;"><i>{{ .Description }}</i></p>
+                {{ end }}
+                <hr />
+            </div>
             {{ end }}
-        </ul>
-    </div>
+        </div>
     </div>
 </div>
 {{ end }}

@@ -24,10 +24,13 @@ type Equipment struct {
 
 // Weapon describes a weapon (not ranged)
 type Weapon struct {
-	Type   string    `yaml:"type"`
-	Icon   string    `yaml:"icon"`
-	Name   string    `yaml:"name"`
-	Damage DiceThrow `yaml:"damage"`
+	Type        string    `yaml:"type"`
+	Icon        string    `yaml:"icon"`
+	Name        string    `yaml:"name"`
+	Notes       []string  `yaml:"notes"`
+	Modifiers   []string  `yaml:"modifiers"`
+	Damage      DiceThrow `yaml:"damage"`
+	Description string    `yaml:"description"`
 }
 
 // MatchIcon will assign a default icon if none is set
