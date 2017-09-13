@@ -39,10 +39,11 @@ spells:
   - name: Heal
     description: Jagon heals you or someone else
     test: Willpower
+    rank: 1
     score:
       throws: 1
       type: 10
-      per_rank: true
+      ranked: true
 stats:
   - name: CC
     base: 26

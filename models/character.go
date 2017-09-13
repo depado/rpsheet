@@ -74,14 +74,6 @@ func (c *Character) Enrich() {
 	}
 }
 
-// DiceThrow defines the way dice throws are represented
-// For exemple 10D10 → Throws: 10, Type: 10
-type DiceThrow struct {
-	Throws  int  `yaml:"throws"`
-	Type    int  `yaml:"type"`
-	PerRank bool `yaml:"per_rank"`
-}
-
 // Stat can be a main stat or an extra stat (in which case, rank and base
 // are not taken into account)
 type Stat struct {

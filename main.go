@@ -15,8 +15,13 @@ func main() {
 	var err error
 	var nogaj models.Character
 
+	cm, err := models.NewCharMapFromGlob("chars/*.yml")
+	if err != nil {
+		logrus.WithError(err).Fatal("Couldn't load chars from glob")
+	}
+
 	// Loading character
-	if err = nogaj.Load("nogaj.yml"); err != nil {
+	if err = nogaj.Load("chars/nogaj.yml"); err != nil {
 		logrus.WithError(err).WithField("file", "nogaj.yml").Fatal("Couldn't load char")
 	}
 
@@ -36,6 +41,13 @@ func main() {
 	r.Static("/assets", "./assets")
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.tmpl", nogaj)
+	})
+	r.GET("/char/:name", func(c *gin.Context) {
+		if char, ok := cm[c.Param("name")]; ok {
+			c.HTML(http.StatusOK, "index.tmpl", char)
+		} else {
+			c.JSON(http.StatusNotFound, gin.H{"status": http.StatusNotFound, "message": "char not found"})
+		}
 	})
 
 	// Running server

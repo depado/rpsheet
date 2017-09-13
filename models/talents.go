@@ -1,7 +1,5 @@
 package models
 
-import "fmt"
-
 // Formation represent a single formation (and what it does)
 type Formation struct {
 	Name        string `yaml:"name"`
@@ -19,18 +17,18 @@ type Talent struct {
 // Spell is a talent with an associated test and a score
 type Spell struct {
 	Talent      `yaml:",inline"`
-	Score       DiceThrow `yaml:"score"`
-	Test        string    `yaml:"test"`
-	Scope       int       `yaml:"scope"`
-	Modifier    int       `yaml:"modifier"`
-	FmtModifier string
+	Score       *DiceThrow `yaml:"score"`
+	Test        string     `yaml:"test"`
+	Scope       int        `yaml:"scope"`
+	Rank        int        `yaml:"rank"`
+	Ingredients []string   `yaml:"ingredients"`
+	Duration    string     `yaml:"duration"`
+	Size        string     `yaml:"size"`
 }
 
 // Enrich adds some formatted fields
 func (s *Spell) Enrich() {
-	if s.Modifier > 0 {
-		s.FmtModifier = fmt.Sprintf("+ %d", s.Modifier)
-	} else if s.Modifier < 0 {
-		s.FmtModifier = fmt.Sprintf("- %d", s.Modifier)
+	if s.Score != nil {
+		s.Score.Format()
 	}
 }
