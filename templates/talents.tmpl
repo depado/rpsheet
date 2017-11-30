@@ -1,10 +1,10 @@
-{{ define "spells_card" }}
+{{ define "talents_card" }}
 <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
     <div class="mdl-card__title mdl-color--light-blue-400 mdl-color-text--grey-100">
-        <h2 class="mdl-card__title-text"><img src="/assets/img/spellbook.svg" height="30px">&nbsp;&nbsp; Spells</h2>
+        <h2 class="mdl-card__title-text"><img src="/assets/img/talents.svg" height="30px">&nbsp;&nbsp; Talents</h2>
     </div>
     <div class="mdl-card__supporting-text mdl-grid" style="width: 99%;">
-        {{ range .Spells }}
+        {{ range .Talents }}
         <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
             <div class="mdl-card__title" style="color:rgba(0,0,0,.54);">
                 <h2 class="mdl-card__title-text">{{ .Name }}</h2>
@@ -27,25 +27,9 @@
                         <img src="/assets/img/rank.svg" height="25px"> {{ .Rank }}
                     </p>
                 {{ end }}
-                <p>
-                    <img src="/assets/img/crosshair.svg" height="25px"> {{ if .Scope }}{{ .Scope }}m{{ else }}Physical{{ end }}
-                    {{ if .Size }}
-                    <span style="float:right;">{{ .Size }} <img src="/assets/img/radius.svg" height="25px"></span>
-                    {{ end }}
-                </p>
-                {{ if .Duration }}
-                <p>
-                    <img src="/assets/img/hourglass.svg" height="25px"> {{ .Duration }}
-                </p>
-                {{ end }}
-                {{ range .Ingredients }}
-                <p>
-                    <img src="/assets/img/black-bag.svg" height="25px"> {{ . }}
-                </p>
-                {{ end }}
                 {{ if .Description }}
-                <hr >
-                <p style="text-align: justify;"><i>{{ .Description }}</i></p>
+                    <hr >
+                    <p style="text-align: justify;"><i>{{ .Description }}</i></p>
                 {{ end }}
             </div>
         </div>

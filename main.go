@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/Sirupsen/logrus"
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 
 	"github.com/Depado/rpsheet/conf"
 	"github.com/Depado/rpsheet/models"

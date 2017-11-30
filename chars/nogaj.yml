@@ -29,12 +29,40 @@ formations:
 talents:
   - name: Evangelism
     description: Give some skills because of faith.
-  - name: Sniper
-    description: Remove some penalties for long-distance shooting
+    rank: 1
+  - name: Bon Tireur
+    rank: 3
+    description: |
+      La distance n’est plus un obstacle lorsque vous avez une arme à feu en 
+      main, si bien que les cibles éloignées vous semblent aussi faciles à 
+      toucher que celles qui sont tout près. Vous ne subissez plus de malus de 
+      portée longue ou extrême.
   - name: Ammo Crafting
     description: Allows to craft ammunitions
   - name: Decadence
-    description: Improved alcohol resistance
+    rank: 1
+    description: |
+      Que ce soit grâce à un conditionnement mental et physique ou à cause de 
+      longues années d’abus, vous avez développé une tolérance aux substances 
+      chimiques. Lorsque vous buvez de l’alcool et autres breuvages, vous ne 
+      perdez connaissance qu’après avoir raté un nombre de tests d’Endurance égal 
+      au double de votre bonus d’Endurance. De plus, vous bénéficiez d’un bonus de
+      +10 aux tests effectués pour continuer à faire usage de drogue pendant 
+      24 heures.
+  - name: Authority Aura
+    test: Commandement
+    rank: 2
+    score:
+      throws: 1
+      type: 10
+    description: |
+      En réussissant un test de Commandement, vous pouvez affecter un nombre de
+      cibles égal à 1d10 plus votre bonus de Sociabilité.
+      Votre voix vous permet d’exercer une autorité telle que même ceux qui ne 
+      vous servent pas directement prêtent attention au moindre de vos propos. 
+      D’ailleurs, vous pouvez même donner des ordres à ce type d’individus à la
+      condition de réussir un test de Commandement assorti d’un malus de -10.
+
 spells:
   - name: Heal
     description: Jagon heals you or someone else
@@ -44,6 +72,11 @@ spells:
       throws: 1
       type: 10
       ranked: true
+  - name: Arcane Mark
+    description: Inscribes a personal rune (visible or invisible).
+    rank: 1
+    size: 1 sq. ft. max
+    test: Willpower
 stats:
   - name: CC
     base: 26
@@ -95,6 +128,7 @@ skills:
   - name: Connaissances (Cultures anciennes)
   - name: Démolition
   - name: Subterfuge
+  - name: Commandement
 equipment:
   weapons:
     - name: Krain
